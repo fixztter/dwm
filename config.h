@@ -6,8 +6,9 @@ static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 10};
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrainsMono Medium:size=10" };
-static const char dmenufont[]       = "JetBrainsMono Medium:size=10";
+static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=10:weight=Medium",
+					"JoyPixels:size=10:antialias=true:autohint=true" };
+static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -96,7 +97,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-    	{ 0,                            XK_Print,  spawn, SHCMD("scrot") },
+    	{ 0,                            XK_Print,  spawn, SHCMD("scrot %Y-%m-%d-%T-screenshot.png -e 'xclip -selection clipboard -t image/png -i $f; mv $f ~/Pictures/screenshots/' &>/dev/null") },
+    	{ MODKEY,                            XK_s,  spawn, SHCMD("scrot --select %Y-%m-%d-%T-cut.png -e 'xclip -selection clipboard -t image/png -i $f; mv $f ~/Pictures/cuts/' &>/dev/null") },
     	{ 0, XF86XK_AudioLowerVolume,   spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
     	{ 0, XF86XK_AudioRaiseVolume,   spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
     	{ 0, XF86XK_AudioMute,          spawn,     SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
