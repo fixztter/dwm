@@ -16,6 +16,7 @@ static const char *fonts[]          = { "Mononoki Nerd Font:size=10:weight=Bold"
                                         "NotoColorEmoji:size=10:antialias=true:autohint=true",
                                          // "Sarasa Gothic:pixelsize=100:antialias=true:autohint=true"
 };
+
 static const char dmenufont[]       = "Mononoki Nerd Font:size=10:weight=Medium";
 
 static const char col_gray1[]       = "#222222";
@@ -41,8 +42,6 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     	NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  	NULL,       NULL,       1 << 8,       0,           -1 },
     	{ "feh",      	NULL,       NULL,       0,            1,           -1 },
     	{ "mpv",      	NULL,       NULL,       0,            1,           -1 },
     	{ "Galculator",	NULL,       NULL,       0,            1,           -1 },
@@ -91,41 +90,43 @@ static Key keys[] = {
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
-    	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_z,      zoom,           {0} },
 	/* { MODKEY,                       XK_Tab,    view,           {0} }, */
-    	{ MODKEY,                       XK_Tab,    cyclelayout, {.i = +1 } },
-    	{ MODKEY|ShiftMask,             XK_Tab,    cyclelayout,  {.i = -1 } },
+	{ MODKEY,                       XK_Tab,    cyclelayout,    {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_Tab,    cyclelayout,    {.i = -1 } },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_c,      setlayout,      {.v = &layouts[2]} },
 	// { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
-    	{ MODKEY|ShiftMask,		XK_f,	   togglefloating, {0} },
+	{ MODKEY|ShiftMask,		XK_f,	   togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-    	{ MODKEY|ShiftMask,		XK_w,  	   spawn, SHCMD("nitrogen --set-zoom-fill --random") },
-    	{ MODKEY|ShiftMask,		XK_c,  	   spawn, SHCMD("$HOME/.scripts/chxkbmap") },
-    	{ MODKEY|ShiftMask,		XK_p,  	   spawn, SHCMD("$HOME/.scripts/toggle-picom") },
-    	{ MODKEY|ShiftMask,		XK_r,  	   spawn, SHCMD("$HOME/.scripts/toggle-redshift") },
-    	{ MODKEY|ShiftMask,		XK_e,  	   spawn, SHCMD("st -e ranger") },
-    	{ 0,                            XK_Print,  spawn, SHCMD("scrot %Y-%m-%d-%T-screenshot.png -e 'xclip -selection clipboard -t image/png -i $f; mv $f ~/Pictures/screenshots/' &>/dev/null") },
-    	{ MODKEY,                            XK_s,  spawn, SHCMD("scrot --select %Y-%m-%d-%T-cut.png -e 'xclip -selection clipboard -t image/png -i $f; mv $f ~/Pictures/cuts/' &>/dev/null") },
-    	{ 0, XF86XK_AudioLowerVolume,   spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
-    	{ 0, XF86XK_AudioRaiseVolume,   spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
-    	{ 0, XF86XK_AudioMute,          spawn,     SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
+	{ MODKEY|ShiftMask,		XK_w,  	   spawn, 	   SHCMD("random-wallpaper") },
+	{ MODKEY|ShiftMask,		XK_c,  	   spawn, 	   SHCMD("chxkbmap") },
+	{ MODKEY|ShiftMask,		XK_p,  	   spawn, 	   SHCMD("toggle-picom") },
+	{ MODKEY|ShiftMask,		XK_r,  	   spawn, 	   SHCMD("toggle-redshift") },
+	{ MODKEY|ShiftMask,		XK_e,  	   spawn, 	   SHCMD("st -e ranger") },
+	{ 0,                            XK_Print,  spawn, 	   SHCMD("scrot %Y-%m-%d-%T-screenshot.png -e 'xclip -selection clipboard -t image/png -i $f; mv $f ~/Pictures/screenshots/' &>/dev/null") },
+	{ MODKEY,                       XK_s,      spawn, 	   SHCMD("scrot --select %Y-%m-%d-%T-cut.png -e 'xclip -selection clipboard -t image/png -i $f; mv $f ~/Pictures/cuts/' &>/dev/null") },
+	{ 0, XF86XK_AudioLowerVolume,  	spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
+	{ 0, XF86XK_AudioRaiseVolume,  	spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
+	{ 0, XF86XK_AudioMute,         	spawn,     SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
+	{ 0, XF86XK_MonBrightnessUp,    spawn,     SHCMD("brightnessctl set +5%") },
+	{ 0, XF86XK_MonBrightnessDown,  spawn,     SHCMD("brightnessctl set 5%-") },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -5 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +5 } },
 	{ MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = GAP_TOGGLE} },
-    	TAGKEYS(                        XK_1,                      0)
+	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
