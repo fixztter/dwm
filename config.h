@@ -13,8 +13,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        	 = 1;   /* 0 means no systray */
 
 static const char *fonts[]          = { "Mononoki Nerd Font:size=10:weight=Bold",
-                                        "NotoColorEmoji:size=10:antialias=true:autohint=true",
-                                         // "Sarasa Gothic:pixelsize=100:antialias=true:autohint=true"
+                                        "Noto Color Emoji:size=10:antialias=true:autohint=true",
+                                        /* "Sarasa Gothic:pixelsize=100:antialias=true:autohint=true" */
 };
 
 static const char dmenufont[]       = "Mononoki Nerd Font:size=10:weight=Medium";
@@ -101,7 +101,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_c,      setlayout,      {.v = &layouts[2]} },
-	// { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[3]} },
+	/* { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[3]} }, */
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,		XK_f,	   togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -115,6 +115,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_p,  	   spawn, 	   SHCMD("toggle-picom") },
 	{ MODKEY|ShiftMask,		XK_r,  	   spawn, 	   SHCMD("toggle-redshift") },
 	{ MODKEY|ShiftMask,		XK_e,  	   spawn, 	   SHCMD("st -e ranger") },
+	{ MODKEY,			XK_F12,	   spawn, 	   SHCMD("betterlockscreen -l") },
 	{ 0,                            XK_Print,  spawn, 	   SHCMD("scrot %Y-%m-%d-%T-screenshot.png -e 'xclip -selection clipboard -t image/png -i $f; mv $f ~/Pictures/screenshots/' &>/dev/null") },
 	{ MODKEY,                       XK_s,      spawn, 	   SHCMD("scrot --select %Y-%m-%d-%T-cut.png -e 'xclip -selection clipboard -t image/png -i $f; mv $f ~/Pictures/cuts/' &>/dev/null") },
 	{ 0, XF86XK_AudioLowerVolume,  	spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
