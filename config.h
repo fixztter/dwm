@@ -12,12 +12,12 @@ static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        	 = 1;   /* 0 means no systray */
 
-static const char *fonts[]          = { "Mononoki Nerd Font:size=10:weight=Bold",
+static const char *fonts[]          = { "monospace:size=10:weight=Bold",
                                         "Noto Color Emoji:size=10:antialias=true:autohint=true",
                                         /* "Sarasa Gothic:pixelsize=100:antialias=true:autohint=true" */
 };
 
-static const char dmenufont[]       = "Mononoki Nerd Font:size=10:weight=Medium";
+static const char dmenufont[]       = "monospace:size=10:weight=Bold";
 
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
