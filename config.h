@@ -56,6 +56,7 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
+	{ "TTT",      bstack },
 	{ "[M]",      monocle },
 	{ "|||",      col },
 	{ NULL,      NULL },    /* no layout function means floating behavior */
@@ -101,8 +102,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Tab,    cyclelayout,    {.i = -1 } },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_c,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_v,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_c,      setlayout,      {.v = &layouts[3]} },
 	/* { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[3]} }, */
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,		XK_f,	   togglefloating, {0} },
